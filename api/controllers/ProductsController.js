@@ -14,7 +14,32 @@ const handleError = async (code, message, res) => {
 
 // get products
 exports.getProducts = (req, res, next) => {
-    res.send('get products')
+    (async () => {
+        try {
+
+            // get products
+            const products = await Product.find();
+
+            // no products check
+            if (products.length <= 0) throw { message: 'Not Found', code: 404}
+
+            // success
+            await res.status(200).json(products);
+
+            // error handling
+        } catch(error) {
+
+            // error message and log
+            const message = error.message;
+            console.log(message);
+
+            if (message === 'Not Found') {
+                await handleError(error.code, message, res)
+            } else {
+                next(error);
+            }
+        }
+    })()
 }
 
 // get products
@@ -34,7 +59,7 @@ exports.addProduct = (req, res, next) => {
             // log product
             console.log(`New product created: ${savedProduct.name}`);
 
-            // success response
+            // success
             await res.status(201).send(savedProduct);
 
             // error handling
