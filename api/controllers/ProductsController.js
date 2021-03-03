@@ -60,7 +60,7 @@ exports.addProduct = (req, res, next) => {
             console.log(`New product created: ${savedProduct.name}`);
 
             // success
-            await res.status(201).send(savedProduct);
+            await res.status(201).json(savedProduct);
 
             // error handling
         } catch (error) {
