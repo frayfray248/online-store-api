@@ -13,6 +13,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 require('./db');
 
+// route imports
+const productsRoute = require('./api/routes/products');
+
 // port
 const PORT = process.env.PORT || 3001;
 
@@ -31,8 +34,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-//cors
+// cors
 app.use(cors);
+
+// routes
+app.use('/products', productsRoute);
 
 // unimplemented routes
 app.use((req, res, next) => res.json({ message: 'Not found' }).status(404));
