@@ -29,8 +29,8 @@ app.use(bodyParser.json());
 //cors
 app.use(cors);
 
-// routes
-app.use('/', (req, res, next) => res.send('Hello World').status(200));
+// unimplemented routes
+app.use((req, res, next) => res.json({ message: 'Not found' }).status(404));
 
 // server
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
