@@ -23,6 +23,13 @@ components:
           format: binary
       required:
         - name
+    ShoppingCart:
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+
 paths:
   /products:
     get:
@@ -82,3 +89,26 @@ paths:
           description: Not Found
         '500':
           description: Internal Server Error
+  /users/{userId}/shoppingCart:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+        description: The ID of the shopping cart's user
+    get:
+      summary: Get a user's shopping cart
+      responses:
+        '200':
+          description: Returns a user's shopping cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingCart'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
