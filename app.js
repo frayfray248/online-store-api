@@ -10,6 +10,7 @@ const swagger = require('swagger-ui-express');
 const YAML = require('yamljs');
 const cors = require('./cors');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 // port
 const PORT = process.env.PORT || 3001;
@@ -21,6 +22,9 @@ const server =  http.createServer(app);
 // documentation
 const OAS = YAML.load('./online-store-api-doc.yml');
 app.use('/api-docs', swagger.serve, swagger.setup(OAS));
+
+// loggin
+app.use(morgan('dev'));
 
 // body parser
 app.use(bodyParser.urlencoded({extended: false}));
