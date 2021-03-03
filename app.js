@@ -32,5 +32,12 @@ app.use(cors);
 // unimplemented routes
 app.use((req, res, next) => res.json({ message: 'Not found' }).status(404));
 
+// errors
+app.use((error, req, res, next) => {
+    console.log(error);
+    res.status(error.status || 500);
+    res.json({ message : 'Internal server error'});
+})
+
 // server
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
