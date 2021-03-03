@@ -1,11 +1,13 @@
 // imports
 const express = require('express')
+const ShoppingCartController = require('../controllers/ShoppingCartContoller')
+const checkAuth = require('../middleware/checkAuth');
 
 // router
-const router = express.Router();
+const router = express.Router()
 
 // routes
-router.get('/', (req, res, next) => {res.send('shopping cart')})
+router.post('/', checkAuth, ShoppingCartController.createShoppingCart);
 
 // export
 module.exports = router;
