@@ -11,6 +11,7 @@ const YAML = require('yamljs');
 const cors = require('./cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+require('./db');
 
 // port
 const PORT = process.env.PORT || 3001;
