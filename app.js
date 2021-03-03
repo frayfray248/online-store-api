@@ -14,7 +14,7 @@ const morgan = require('morgan');
 require('./db');
 
 // route imports
-const productsRoute = require('./api/routes/products');
+const productsRoute = require('./api/routes/ProductsRoute');
 
 // port
 const PORT = process.env.PORT || 3001;
