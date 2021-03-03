@@ -1,6 +1,6 @@
 // db
 const mongoose = require('mongoose');
-const Product = require('./ProductsModel');
+const Product = require('./ProductsModel').schema;
 
 // model
 const ShoppingCartSchema = mongoose.Schema({
