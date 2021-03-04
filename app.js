@@ -15,6 +15,7 @@ require('./db');
 
 // route imports
 const productsRoute = require('./api/routes/ProductsRoute');
+const shoppingCartRoute = require('./api/routes/ShoppingCart');
 
 // port
 const PORT = process.env.PORT || 3001;
@@ -39,6 +40,7 @@ app.use(cors);
 
 // routes
 app.use('/products', productsRoute);
+app.use('/shoppingCart', shoppingCartRoute);
 
 // unimplemented routes
 app.use((req, res, next) => res.json({ message: 'Not found' }).status(404));
