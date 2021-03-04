@@ -5,6 +5,11 @@ info:
   version: 0.0.1
 
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Product:
       properties:
@@ -25,6 +30,8 @@ components:
         - name
     ShoppingCart:
       properties:
+        userId:
+          type: string
         products:
           type: array
           items:
@@ -89,7 +96,7 @@ paths:
           description: Not Found
         '500':
           description: Internal Server Error
-  /users/{userId}/shoppingCart:
+  /shoppingCart:
     parameters:
       - in: path
         name: userId
@@ -99,6 +106,8 @@ paths:
           minimum: 1
         description: The ID of the shopping cart's user
     get:
+      security:
+      - BearerAuth: []
       summary: Get a user's shopping cart
       responses:
         '200':
@@ -107,6 +116,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ShoppingCart'
+        '401':
+          description: Authorization Failed
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    post:
+      security:
+      - BearerAuth: []
+      summary: Create a shopping cart for a user
+      responses:
+        '201':
+          description: Returns the created shopping cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingCart'
+        '401':
+          description: Authorization Failed
         '404':
           description: Not Found
         '500':
