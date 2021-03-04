@@ -5,7 +5,7 @@ const Product = require('./ProductsModel').schema;
 // model
 const ShoppingCartSchema = mongoose.Schema({
     userId : {
-        type : Number,
+        type : mongoose.Types.ObjectId,
         required: true
     },
     products : {
