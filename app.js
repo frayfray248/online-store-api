@@ -28,8 +28,11 @@ const server =  http.createServer(app);
 const OAS = YAML.load('./online-store-api-doc.yml');
 app.use('/api-docs', swagger.serve, swagger.setup(OAS));
 
-// loggin
+// logging
 app.use(morgan('dev'));
+
+// make uploads file available
+app.use('/uploads', express.static('uploads'));
 
 // body parser
 app.use(bodyParser.urlencoded({extended: false}));

@@ -50,7 +50,8 @@ exports.addProduct = (req, res, next) => {
             // product model
             const newProduct = new Product({
                 _id: new mongoose.Types.ObjectId(),
-                ...req.body
+                ...req.body,
+                image : req.file.path
             })
 
             // create product
