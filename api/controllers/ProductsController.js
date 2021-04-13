@@ -46,7 +46,7 @@ exports.getProducts = (req, res, next) => {
 exports.addProduct = (req, res, next) => {
     (async () => {
         try {
-
+            console.log(req.file)
             // product model
             const newProduct = new Product({
                 _id: new mongoose.Types.ObjectId(),
@@ -108,7 +108,7 @@ exports.deleteProduct = (req, res, next) => {
             // Not found error
             if (message === 'Not Found') {
                 handleError(error.code, message, res)
-                
+
             } else { // all other errors
                 next(error)
             }
