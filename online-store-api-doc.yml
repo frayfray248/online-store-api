@@ -25,7 +25,6 @@ components:
           type: number
         image:
           type: string
-          format: binary
       required:
         - name
     ShoppingCart:
